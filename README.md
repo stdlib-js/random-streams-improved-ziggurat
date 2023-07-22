@@ -24,38 +24,31 @@ limitations under the License.
 
 > Create a [readable stream][readable-stream] for generating pseudorandom numbers drawn from a [standard normal][normal] distribution using the [Improved Ziggurat][@stdlib/random/base/improved-ziggurat] algorithm.
 
+<section class="installation">
 
+## Installation
+
+```bash
+npm install @stdlib/random-streams-improved-ziggurat
+```
+
+Alternatively,
+
+-   To load the package in a website via a `script` tag without installation and bundlers, use the [ES Module][es-module] available on the [`esm` branch][esm-url].
+-   If you are using Deno, visit the [`deno` branch][deno-url].
+-   For use in Observable, or in browser/node environments, use the [Universal Module Definition (UMD)][umd] build available on the [`umd` branch][umd-url].
+-   To use as a general utility for the command line, install the corresponding [CLI package][cli-section] globally.
+
+The [branches.md][branches-url] file summarizes the available branches and displays a diagram illustrating their relationships.
+
+</section>
 
 <section class="usage">
 
 ## Usage
 
-To use in Observable,
-
 ```javascript
-randomStream = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/random-streams-improved-ziggurat@umd/browser.js' )
-```
-
-To vendor stdlib functionality and avoid installing dependency trees for Node.js, you can use the UMD server build:
-
-```javascript
-var randomStream = require( 'path/to/vendor/umd/random-streams-improved-ziggurat/index.js' )
-```
-
-To include the bundle in a webpage,
-
-```html
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/random-streams-improved-ziggurat@umd/browser.js"></script>
-```
-
-If no recognized module system is present, access bundle contents via the global scope:
-
-```html
-<script type="text/javascript">
-(function () {
-    window.randomStream;
-})();
-</script>
+var randomStream = require( '@stdlib/random-streams-improved-ziggurat' );
 ```
 
 <a name="random-stream"></a>
@@ -437,14 +430,9 @@ function onState( state ) {
 
 <!-- eslint no-undef: "error" -->
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-<body>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/streams-node-inspect-sink@umd/browser.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/random-streams-improved-ziggurat@umd/browser.js"></script>
-<script type="text/javascript">
-(function () {
+```javascript
+var inspectStream = require( '@stdlib/streams-node-inspect-sink' );
+var randomStream = require( '@stdlib/random-streams-improved-ziggurat' );
 
 function log( v ) {
     console.log( v.toString() );
@@ -463,11 +451,6 @@ opts = {
 var iStream = inspectStream( opts, log );
 
 stream.pipe( iStream );
-
-})();
-</script>
-</body>
-</html>
 ```
 
 </section>
@@ -476,7 +459,80 @@ stream.pipe( iStream );
 
 <!-- Section for describing a command-line interface. -->
 
+* * *
 
+<section class="cli">
+
+## CLI
+
+<section class="installation">
+
+## Installation
+
+To use as a general utility, install the CLI package globally
+
+```bash
+npm install -g @stdlib/random-streams-improved-ziggurat-cli
+```
+
+</section>
+<!-- CLI usage documentation. -->
+
+
+<section class="usage">
+
+### Usage
+
+```text
+Usage: random-improved-ziggurat [options]
+
+Options:
+
+  -h,  --help               Print this message.
+  -V,  --version            Print the package version.
+       --sep sep            Separator used to join streamed data. Default: '\n'.
+  -n,  --iter iterations    Number of pseudorandom numbers.
+       --seed seed          Pseudorandom number generator seed.
+       --state filepath     Path to a file containing the pseudorandom number
+                            generator state.
+       --snapshot filepath  Output file path for saving the pseudorandom number
+                            generator state upon exit.
+```
+
+</section>
+
+<!-- /.usage -->
+
+<!-- CLI usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+
+<section class="notes">
+
+### Notes
+
+-   In accordance with POSIX convention, a trailing newline is **always** appended to generated output prior to exit.
+-   Specifying a "snapshot" file path is useful when wanting to resume pseudorandom number generation due to, e.g., a downstream failure in an analysis pipeline. Before exiting, the process will store the pseudorandom number generator state in a file specified according to a provided file path. Upon loading a snapshot (state), the process will generate pseudorandom numbers starting from the loaded state, thus avoiding having to seed and replay an entire analysis.
+
+</section>
+
+<!-- /.notes -->
+
+<!-- CLI usage examples. -->
+
+<section class="examples">
+
+### Examples
+
+```bash
+$ random-improved-ziggurat -n 10 --seed 1234
+```
+
+</section>
+
+<!-- /.examples -->
+
+</section>
+
+<!-- /.cli -->
 
 * * *
 
@@ -500,10 +556,10 @@ stream.pipe( iStream );
 
 ## See Also
 
--   <span class="package-name">[`@stdlib/random/base/improved-ziggurat`][@stdlib/random/base/improved-ziggurat]</span><span class="delimiter">: </span><span class="description">normally distributed pseudorandom numbers using the improved Ziggurat method.</span>
--   <span class="package-name">[`@stdlib/random/iter/improved-ziggurat`][@stdlib/random/iter/improved-ziggurat]</span><span class="delimiter">: </span><span class="description">create an iterator for generating pseudorandom numbers drawn from a standard normal distribution using the Improved Ziggurat algorithm.</span>
--   <span class="package-name">[`@stdlib/random/streams/box-muller`][@stdlib/random/streams/box-muller]</span><span class="delimiter">: </span><span class="description">create a readable stream for generating pseudorandom numbers drawn from a standard normal distribution using the Box-Muller transform.</span>
--   <span class="package-name">[`@stdlib/random/streams/randn`][@stdlib/random/streams/randn]</span><span class="delimiter">: </span><span class="description">create a readable stream for generating pseudorandom numbers drawn from a standard normal distribution.</span>
+-   <span class="package-name">[`@stdlib/random-base/improved-ziggurat`][@stdlib/random/base/improved-ziggurat]</span><span class="delimiter">: </span><span class="description">normally distributed pseudorandom numbers using the improved Ziggurat method.</span>
+-   <span class="package-name">[`@stdlib/random-iter/improved-ziggurat`][@stdlib/random/iter/improved-ziggurat]</span><span class="delimiter">: </span><span class="description">create an iterator for generating pseudorandom numbers drawn from a standard normal distribution using the Improved Ziggurat algorithm.</span>
+-   <span class="package-name">[`@stdlib/random-streams/box-muller`][@stdlib/random/streams/box-muller]</span><span class="delimiter">: </span><span class="description">create a readable stream for generating pseudorandom numbers drawn from a standard normal distribution using the Box-Muller transform.</span>
+-   <span class="package-name">[`@stdlib/random-streams/randn`][@stdlib/random/streams/randn]</span><span class="delimiter">: </span><span class="description">create a readable stream for generating pseudorandom numbers drawn from a standard normal distribution.</span>
 
 </section>
 
@@ -562,11 +618,15 @@ Copyright &copy; 2016-2023. The Stdlib [Authors][stdlib-authors].
 -->
 
 [chat-image]: https://img.shields.io/gitter/room/stdlib-js/stdlib.svg
-[chat-url]: https://gitter.im/stdlib-js/stdlib/
+[chat-url]: https://app.gitter.im/#/room/#stdlib-js_stdlib:gitter.im
 
 [stdlib]: https://github.com/stdlib-js/stdlib
 
 [stdlib-authors]: https://github.com/stdlib-js/stdlib/graphs/contributors
+
+[cli-section]: https://github.com/stdlib-js/random-streams-improved-ziggurat#cli
+[cli-url]: https://github.com/stdlib-js/random-streams-improved-ziggurat/tree/cli
+[@stdlib/random-streams-improved-ziggurat]: https://github.com/stdlib-js/random-streams-improved-ziggurat/tree/main
 
 [umd]: https://github.com/umdjs/umd
 [es-module]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
@@ -586,7 +646,7 @@ Copyright &copy; 2016-2023. The Stdlib [Authors][stdlib-authors].
 
 [normal]: https://en.wikipedia.org/wiki/Normal_distribution
 
-[@stdlib/array/uint32]: https://github.com/stdlib-js/array-uint32/tree/umd
+[@stdlib/array/uint32]: https://github.com/stdlib-js/array-uint32
 
 [@doornik:2005]: https://www.doornik.com/research/ziggurat.pdf
 
@@ -596,13 +656,13 @@ Copyright &copy; 2016-2023. The Stdlib [Authors][stdlib-authors].
 
 <!-- <related-links> -->
 
-[@stdlib/random/base/improved-ziggurat]: https://github.com/stdlib-js/random-base-improved-ziggurat/tree/umd
+[@stdlib/random/base/improved-ziggurat]: https://github.com/stdlib-js/random-base-improved-ziggurat
 
-[@stdlib/random/iter/improved-ziggurat]: https://github.com/stdlib-js/random-iter-improved-ziggurat/tree/umd
+[@stdlib/random/iter/improved-ziggurat]: https://github.com/stdlib-js/random-iter-improved-ziggurat
 
-[@stdlib/random/streams/box-muller]: https://github.com/stdlib-js/random-streams-box-muller/tree/umd
+[@stdlib/random/streams/box-muller]: https://github.com/stdlib-js/random-streams-box-muller
 
-[@stdlib/random/streams/randn]: https://github.com/stdlib-js/random-streams-randn/tree/umd
+[@stdlib/random/streams/randn]: https://github.com/stdlib-js/random-streams-randn
 
 <!-- </related-links> -->
 
