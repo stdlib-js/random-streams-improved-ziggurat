@@ -44,6 +44,11 @@ limitations under the License.
 To use in Observable,
 
 ```javascript
+randomStream = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/random-streams-improved-ziggurat@umd/browser.js' )
+```
+The previous example will load the latest bundled code from the umd branch. Alternatively, you may load a specific version by loading the file from one of the [tagged bundles](https://github.com/stdlib-js/random-streams-improved-ziggurat/tags). For example,
+
+```javascript
 randomStream = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/random-streams-improved-ziggurat@v0.1.0-umd/browser.js' )
 ```
 
@@ -56,7 +61,7 @@ var randomStream = require( 'path/to/vendor/umd/random-streams-improved-ziggurat
 To include the bundle in a webpage,
 
 ```html
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/random-streams-improved-ziggurat@v0.1.0-umd/browser.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/random-streams-improved-ziggurat@umd/browser.js"></script>
 ```
 
 If no recognized module system is present, access bundle contents via the global scope:
@@ -453,7 +458,7 @@ function onState( state ) {
 <html lang="en">
 <body>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/streams-node-inspect-sink@umd/browser.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/random-streams-improved-ziggurat@v0.1.0-umd/browser.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/random-streams-improved-ziggurat@umd/browser.js"></script>
 <script type="text/javascript">
 (function () {
 
